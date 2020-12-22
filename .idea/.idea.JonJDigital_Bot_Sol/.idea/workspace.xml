@@ -6,9 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +32,12 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" />
       <option value="$PROJECT_DIR$/TEST/Program.cs" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
       <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ltr0esPsKBM4M0a1iAPvSoueGR" />
@@ -109,7 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1608427008632</updated>
       <workItem from="1608427017457" duration="5308000" />
-      <workItem from="1608503348863" duration="16721000" />
+      <workItem from="1608503348863" duration="17163000" />
     </task>
     <servers />
   </component>
@@ -133,5 +132,24 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs</url>
+          <line>56</line>
+          <properties documentPath="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol\JonJDigital_Bot_Proj\PublicCmd.cs" initialLine="56" containingFunctionPresentation="method 'levelUp'">
+            <startOffsets>
+              <option value="1684" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1713" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -5,7 +5,6 @@
     <e p="C:\Users\jonda\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_JonJDigital_Bot_Sol.-1597498731.00" t="ExcludeRecursive" />
     <e p="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol" t="IncludeFlat">
       <e p="JonJDigital_Bot_Proj" t="IncludeRecursive">
-        <e p=".env" t="Include" />
         <e p=".gitignore" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="JonJDigital_Bot_Proj.csproj" t="IncludeRecursive" />
