@@ -41,7 +41,7 @@ namespace JonJDigital_Bot_Proj
             var con = new MySqlConnection(conStr);
             con.Open();
 
-            var stm = "select * from levels where user_id=" + author.Id + " and guild_id=" + guildId;
+            var stm = $"select * from levels where user_id={author.Id} and guild_id={guildId}";
             var cmd = new MySqlCommand(stm, con);
             
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -53,9 +53,9 @@ namespace JonJDigital_Bot_Proj
                 var exp = rdr.GetInt64(2);
                 var level = rdr.GetInt64(3);
 
-                var levelBoundary = level * 100;
+                var levelBoundary = (((level * 20) * level * 0.8) + level * 100) - 16;
                 var newXp = exp + experience;
-                if ( newXp >= levelBoundary)
+                if (newXp >= levelBoundary) ;
                 {
                     level++;
                     rdr.Close();
@@ -65,29 +65,16 @@ namespace JonJDigital_Bot_Proj
                     con.Close();
                     return $"Congrats {author.Username} you have levelled up to level {level}!!";
                 }
-                
-                rdr.Close();
-                var sql = $"update levels set experience = {newXp}, level = {level} where guild_id = {guild} and user_id = {user}";
-                var cmd1 = new MySqlCommand(sql, con);
-                cmd1.ExecuteNonQuery();
-                con.Close();
-                // Console.WriteLine("row inserted");
-                // Console.WriteLine($"User: {user}, Guild: {guild}, Experience: {exp}, Level: {level}");
-                // Console.WriteLine("{0}", rdr.GetInt64(0));
             }
             else
             {
                 rdr.Close();
-                var sql = $"INSERT INTO levels(user_id, guild_id, experience, level) VALUES({author.Id}, {guildId}, {experience}, 0)";
+                var sql = $"INSERT INTO levels(user_id, guild_id, experience, level) VALUES({author.Id}, {guildId}, {experience}, 1)";
                 var cmd1 = new MySqlCommand(sql, con);
                 cmd1.ExecuteNonQuery();
                 con.Close();
-                // Console.WriteLine("row inserted");
-                // return "Gained: " + experience + " xp";
             }
-
             return "";
-            // Console.WriteLine(result);
         }
     }
     

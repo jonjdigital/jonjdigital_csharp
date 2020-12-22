@@ -45,7 +45,7 @@ namespace JonJDigital_Bot_Proj
                 var response = test1.levelUp(e.Message);
                 if (response != "")
                 {
-                    e.Message.RespondAsync(test1.levelUp(e.Message));
+                    e.Message.RespondAsync(response);
                 }
 
                 //tester msg response

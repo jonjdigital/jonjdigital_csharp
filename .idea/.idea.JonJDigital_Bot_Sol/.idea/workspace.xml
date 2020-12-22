@@ -6,22 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/JonJDigital_Bot_Proj.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Sol.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEST/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEST/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEST/TEST.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -121,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1608427008632</updated>
       <workItem from="1608427017457" duration="5308000" />
-      <workItem from="1608503348863" duration="15111000" />
+      <workItem from="1608503348863" duration="16721000" />
     </task>
     <servers />
   </component>
