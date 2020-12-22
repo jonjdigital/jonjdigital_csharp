@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\jonda\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\jonda\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_JonJDigital_Bot_Sol.-1597498731.00" t="ExcludeRecursive" />
+    <e p="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol" t="IncludeFlat">
+      <e p="JonJDigital_Bot_Proj" t="IncludeRecursive">
+        <e p=".env" t="Include" />
+        <e p=".gitignore" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="JonJDigital_Bot_Proj.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="JonJDigital_Bot_Proj.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="PublicCmd.cs" t="Include" />
+      </e>
+      <e p="JonJDigital_Bot_Sol.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
