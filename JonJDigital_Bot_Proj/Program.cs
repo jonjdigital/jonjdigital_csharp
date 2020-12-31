@@ -48,28 +48,22 @@ namespace JonJDigital_Bot_Proj
                     e.Message.RespondAsync(response);
                 }
 
-                //tester msg response
-                /*if (msg.ToLower().StartsWith(prefix + "hello"))
+                if (msg.ToLower() == prefix + "profile")
                 {
-                    await e.Message.RespondAsync(("Hello <@" + e.Message.Author.Id) + ">!");
-                }*/
+                    // test1.profile(e.Message, Discord);
+                    e.Message.RespondAsync(embed: test1.profile(e.Message));
+                }
                 
-                //public commands
                 if (msg.ToLower() == prefix + "ping")
                 {
                     if (author == jonjdigital || author == jonjdigital_test)
                     {
-                        // PublicCmd cmd = new PublicCmd();
-                        // Console.WriteLine(test1.ping());
                         e.Message.RespondAsync(test1.ping());
-                        //await e.Message.RespondAsync("Hello <@" + e.Message.Author.Id + ">!");
                     }else if (author != jonjdigital && author != jonjdigital_test)
                     {
                         e.Message.RespondAsync("Sorry <@" + e.Message.Author.Id + ">, but this is Developer only command!");
 
                     }
-
-                    // Console.WriteLine();
                 }
 
             };

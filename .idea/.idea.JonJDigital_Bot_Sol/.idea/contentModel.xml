@@ -3,6 +3,8 @@
   <component name="ContentModelStore">
     <e p="C:\Users\jonda\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
     <e p="C:\Users\jonda\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_JonJDigital_Bot_Sol.-1597498731.00" t="ExcludeRecursive" />
+    <e p="C:\Users\jonda\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\jonda\AppData\Roaming\JetBrains\Rider2020.3\extensions" t="IncludeRecursive" />
     <e p="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol" t="IncludeFlat">
       <e p="JonJDigital_Bot_Proj" t="IncludeRecursive">
         <e p=".gitignore" t="Include" />
