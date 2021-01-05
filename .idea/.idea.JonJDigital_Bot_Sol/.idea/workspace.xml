@@ -20,26 +20,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/199/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/39A/Path.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DAD84BF0-52EE-47D0-92FF-B3FF46CC6020/1d/eb5c8608/Env.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA145753-E08F-4034-9E3A-A50D7F7478EE/57/ccf648a7/MySqlCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2EE/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0FD34F9D-1354-4305-971D-B5674D2A2A66/1F/Directory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2B/Environment.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2D/Environment.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36EE76F7-388E-433F-A702-CDC1F33D92AD/4/Console.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2E/Environment.Variables.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/D2/Span.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA145753-E08F-4034-9E3A-A50D7F7478EE/57/ccf648a7/MySqlCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5BB3EFBF-FD33-41E2-BFF8-0097DD9B84DA/01/73769069/AsyncEvent`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62AFAD06-2BB8-410D-8296-D53B05DB251B/2d/7d3acc70/DiscordGuild.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/TEST/Program.cs" />
-      <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" />
+      <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
     </changedPaths>
   </component>
@@ -55,16 +47,21 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35008666" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.27735645" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.JonJDigital_Bot_Proj">
+    <configuration name="Publish JonJDigital_Bot_Sol to folder" type="DotNetFolderPublish" factoryName="Publish to folder" temporary="true">
+      <riderPublish runtime="win-x86" self_contained="true" target_folder="C:/projects" target_framework="net5.0" uuid_high="-5277727643086074750" uuid_low="-4752785807318172798" />
+      <method v="2" />
+    </configuration>
     <configuration name="JonJDigital_Bot_Proj" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -101,6 +98,11 @@
         <option name="Build" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Publish to folder.Publish JonJDigital_Bot_Sol to folder" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -113,6 +115,8 @@
       <workItem from="1608427017457" duration="5308000" />
       <workItem from="1608503348863" duration="19896000" />
       <workItem from="1609373473334" duration="3139000" />
+      <workItem from="1609778938471" duration="8601000" />
+      <workItem from="1609793865289" duration="10115000" />
     </task>
     <servers />
   </component>
@@ -138,35 +142,11 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs</url>
-          <line>102</line>
-          <properties documentPath="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol\JonJDigital_Bot_Proj\PublicCmd.cs" initialLine="102" containingFunctionPresentation="method 'profile'">
-            <startOffsets>
-              <option value="3506" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3543" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs</url>
-          <line>53</line>
-          <properties documentPath="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol\JonJDigital_Bot_Proj\Program.cs" initialLine="53" containingFunctionPresentation="lambda expression inside method 'MainAsync'">
-            <startOffsets>
-              <option value="1563" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1627" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="DotNetProject">
+        <watch expression="((MySql.Data.MySqlClient.MySqlDataReader) MySqlCommand.ExecuteReader()).Statement.ResolvedCommandText" />
+        <watch expression="MySqlCommand.ExecuteReader()" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

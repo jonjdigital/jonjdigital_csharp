@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus;
+using DSharpPlus.Entities;
 
 namespace JonJDigital_Bot_Proj
 {
@@ -33,14 +35,12 @@ namespace JonJDigital_Bot_Proj
                 if(e.Message.Author.IsBot) return;
                 
                 //declare jons account IDs
-                var jonjdigital = 229244232064434177;
-                var jonjdigital_test = 691346983494877216;
-
-                // test1.helloWorld(e.Message);
+                ulong jonjdigital = 229244232064434177;
+                ulong jonjdigital_test = 691346983494877216;
                 
-                //get basic message details
                 string msg = e.Message.Content;
-                int author = (int) e.Message.Author.Id;
+                var msgAuthor = e.Message.Author;
+                ulong author = e.Message.Author.Id;
 
                 var response = test1.levelUp(e.Message);
                 if (response != "")
@@ -48,21 +48,31 @@ namespace JonJDigital_Bot_Proj
                     e.Message.RespondAsync(response);
                 }
 
-                if (msg.ToLower() == prefix + "profile")
+                if (msg.ToLower().StartsWith(prefix + "profile"))
                 {
-                    // test1.profile(e.Message, Discord);
-                    e.Message.RespondAsync(embed: test1.profile(e.Message));
+                    var mentions = e.Message.MentionedUsers;
+                    
+                    if (mentions.Count == 0)
+                    {
+                        e.Message.RespondAsync(embed: test1.profile(e.Message));
+                    }
+                    else
+                    {
+                        var user = await e.Message.Channel.Guild.GetMemberAsync(mentions.First().Id);
+                        var embed = test1.otherprofile(e.Message, user);
+                        e.Message.RespondAsync(embed: embed);
+                    }
                 }
                 
                 if (msg.ToLower() == prefix + "ping")
                 {
-                    if (author == jonjdigital || author == jonjdigital_test)
-                    {
-                        e.Message.RespondAsync(test1.ping());
-                    }else if (author != jonjdigital && author != jonjdigital_test)
-                    {
+                    // var author = e.Author.Id;
+                    if (author != jonjdigital && author != jonjdigital_test)
+                    {                        
                         e.Message.RespondAsync("Sorry <@" + e.Message.Author.Id + ">, but this is Developer only command!");
-
+                    }else
+                    {                        
+                        e.Message.RespondAsync(test1.ping());
                     }
                 }
 
