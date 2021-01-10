@@ -45,27 +45,17 @@ namespace JonJDigital_Bot_Proj
         {
             var guild = msg.Channel.Guild;
             DiscordMember member = guild.GetMemberAsync(msg.Author.Id).Result;
-            var roles = member.Roles;
-            var roles2 = roles.ToArray();
-
-            foreach (var role in roles2)
-            {
-                switch (role.Name.ToLower())
-                {
-                    case "admins":
-                        return true;
-                    
-                    case "developers":
-                        return true;
-                    
-                    case "owner":
-                        return true;
-                    
-                    default:
-                        return false;
-                }
-            }
-
+            
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.Administrator))return true; //overall admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.KickMembers))return true; //user admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.BanMembers))return true; //user admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageChannels))return true; //server admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageEmojis))return true; //server admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageGuild))return true; //server admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageMessages))return true; //server admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageNicknames))return true; //user admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageWebhooks))return true; //server admin 
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageRoles))return true; //server admin
             return false;
         }
         public string getRoles(ulong user, DiscordMessage msg)
