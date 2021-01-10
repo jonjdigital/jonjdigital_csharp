@@ -77,7 +77,7 @@ namespace JonJDigital_Bot_Proj
                 //admin commands start
                 if (msg.ToLower().StartsWith(prefix + "reset"))
                 {
-                    if (publicCmd.checkAdmin(e.Message))
+                    if (publicCmd.checkUserAdmin(e.Message))
                     {
                         var mentions = e.Message.MentionedUsers;
 
@@ -94,7 +94,7 @@ namespace JonJDigital_Bot_Proj
                     }
                     else
                     {
-                        e.Message.RespondAsync($"<@{author}>, you do not have access to this command");
+                        e.Message.RespondAsync($"<@{author}>, you do not have access to this command. You need to be able to Manage Users to use this command.");
 
                     }
                 }

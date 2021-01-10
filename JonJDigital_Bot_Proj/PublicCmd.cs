@@ -58,6 +58,17 @@ namespace JonJDigital_Bot_Proj
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageRoles))return true; //server admin
             return false;
         }
+        public bool checkUserAdmin(DiscordMessage msg)
+        {
+            var guild = msg.Channel.Guild;
+            DiscordMember member = guild.GetMemberAsync(msg.Author.Id).Result;
+            
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.Administrator))return true; //overall admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.KickMembers))return true; //user admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.BanMembers))return true; //user admin
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageNicknames))return true; //user admin
+            return false;
+        }
         public string getRoles(ulong user, DiscordMessage msg)
         {
             var guild = msg.Channel.Guild;
