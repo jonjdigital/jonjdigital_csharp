@@ -16,14 +16,12 @@ namespace JonJDigital_Bot_Proj
         static async Task MainAsync()
         {
 
-            string prefix = "j";
-            
-            DotNetEnv.Env.Load("../../../.env");
-            // string token = DotNetEnv.Env.GetString("TOKEN");
+            string prefix = Environment.GetEnvironmentVariable("DISCORD_PREFIX");
+            string token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
             
             var Discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "NzI5MDY2NTIzOTAxMjk2Njky.XwDiHA.y_K8w6sbHJJW3h_joLNufjui4go",
+                Token = token,
                 TokenType = TokenType.Bot
             });
 

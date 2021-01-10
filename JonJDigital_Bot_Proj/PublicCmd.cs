@@ -28,24 +28,19 @@ namespace JonJDigital_Bot_Proj
 {
     public class PublicCmd
     {
-        private static readonly HttpClient client = new HttpClient();
-        // private static string TwitchID = DotNetEnv.Env.GetString("TWITCH_CLIENT");
-        private static string TwitchID = "srk8xwi94z3e6corpgxfrlm920076h";
-        // private static string TwitchSecret = DotNetEnv.Env.GetString("TWITCH_SECRET");
-        private static string TwitchSecret = "1cd1gv3kturpbk78m5k5c7jdrnhdmq";
-        // private static string YoutubeAPI = DotNetEnv.Env.GetString("YOUTUBE_API_KEY");
-        private static string YoutubeAPI = "AIzaSyDIU2EqxFD0uzn8AfWSLpiELjs8rbnolnU";
+        private static string TwitchID = Environment.GetEnvironmentVariable("DISCORD_TWITCH_CLIENT");
+        private static string TwitchSecret = Environment.GetEnvironmentVariable("DISCORD_TWITCH_SECRET");
+        private static string YoutubeAPI = Environment.GetEnvironmentVariable("DISCORD_YOUTUBE_API");
         private static string redirect = WebUtility.UrlEncode("https://localhost");
-        // private static string authUri = $"https://id.twitch.tv/oauth2/authorize?client_id={TwitchID}&redirect_uri={redirect}?response_type=openid&scope=user_read_email";
         private string authUri = $"https://id.twitch.tv/oauth2/token?client_id={TwitchID}&client_secret={TwitchSecret}&grant_type=client_credentials";
         
-        // private string conStr = DotNetEnv.Env.GetString("MYSQL_CON");
-        private string conStr = "server=www.jonjdigital.com;userid=discord_bot;password=L0ckd0wn111!;database=jonjdigital_discord";
+        private static string conStr = Environment.GetEnvironmentVariable("DISCORD_MYSQL");
         private string TwitchApiUsers = "https://api.twitch.tv/helix/users";
         private string TwitchChannelSearch = "https://api.twitch.tv/helix/search/channels";
         private string TwitchGameSearch = "https://api.twitch.tv/helix/games";
         private string YoutubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q="; //add keyword and key onto end
-
+        private MySqlConnection con = new MySqlConnection(conStr);
+        
         public bool checkAdmin(DiscordMessage msg)
         {
             var guild = msg.Channel.Guild;
@@ -107,13 +102,10 @@ namespace JonJDigital_Bot_Proj
         }
         public string ping()
         {
-            // DotNetEnv.Env.Load("../../../.env");
-            string conStr = DotNetEnv.Env.GetString("MYSQL_CON");
-
-            var con = new MySqlConnection(conStr);
             con.Open();
             string version = con.ServerVersion;
             con.Close();
+            // Console.WriteLine(windir);
             return "MySQL version : "+version;
         }
         public string levelUp(DiscordMessage msg)
@@ -122,10 +114,6 @@ namespace JonJDigital_Bot_Proj
             var author= msg.Author;
             double exp1 = msg.Content.Length / 2;
             var experience = Math.Ceiling(exp1);
-            
-            string conStr = DotNetEnv.Env.GetString("MYSQL_CON");
-
-            var con = new MySqlConnection(conStr);
             con.Open();
 
             var stm = $"select * from levels where user_id={author.Id} and guild_id={guildId}";
@@ -180,7 +168,6 @@ namespace JonJDigital_Bot_Proj
             var guild = msg.Channel.Guild;
             var roles = getRoles(author.Id, msg);
             DiscordMember member = guild.GetMemberAsync(author.Id).Result;
-            var con = new MySqlConnection(conStr);
             con.Open();
 
             var stm = $"select * from levels where user_id={author.Id} and guild_id={guild.Id}";
@@ -220,7 +207,6 @@ namespace JonJDigital_Bot_Proj
             var guild = msg.Channel.Guild;
             var roles = getRoles(mentioned.Id, msg);
             DiscordMember member = guild.GetMemberAsync(mentioned.Id).Result;
-            var con = new MySqlConnection(conStr);
             con.Open();
 
             var stm = $"select * from levels where user_id={mentioned.Id} and guild_id={guild.Id}";
@@ -451,8 +437,6 @@ namespace JonJDigital_Bot_Proj
         public DiscordEmbed resetProfile(DiscordMessage msg, DiscordUser mentioned)
         {
             var guild = msg.Channel.Guild;
-            
-            var con = new MySqlConnection(conStr);
             con.Open();
 
             var stm = $"update levels set experience = 0, level = 0 where user_id={mentioned.Id} and guild_id={guild.Id}";
