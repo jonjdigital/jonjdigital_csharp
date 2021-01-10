@@ -19,17 +19,17 @@ namespace JonJDigital_Bot_Proj
             string prefix = "j";
             
             DotNetEnv.Env.Load("../../../.env");
-            string token = DotNetEnv.Env.GetString("TOKEN");
+            // string token = DotNetEnv.Env.GetString("TOKEN");
             
             var Discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = token,
+                Token = "NzI5MDY2NTIzOTAxMjk2Njky.XwDiHA.y_K8w6sbHJJW3h_joLNufjui4go",
                 TokenType = TokenType.Bot
             });
 
             Discord.MessageCreated += async (s, e) =>
             {
-                PublicCmd test1 = new PublicCmd();
+                PublicCmd publicCmd = new PublicCmd();
 
                 //ignore bots own messages
                 if(e.Message.Author.IsBot) return;
@@ -42,25 +42,62 @@ namespace JonJDigital_Bot_Proj
                 var msgAuthor = e.Message.Author;
                 ulong author = e.Message.Author.Id;
 
-                var response = test1.levelUp(e.Message);
+                var response = publicCmd.levelUp(e.Message);
                 if (response != "")
                 {
                     e.Message.RespondAsync(response);
                 }
 
+                //publicly available commands
                 if (msg.ToLower().StartsWith(prefix + "profile"))
                 {
                     var mentions = e.Message.MentionedUsers;
                     
                     if (mentions.Count == 0)
                     {
-                        e.Message.RespondAsync(embed: test1.profile(e.Message));
+                        e.Message.RespondAsync(embed: publicCmd.profile(e.Message));
                     }
                     else
                     {
                         var user = await e.Message.Channel.Guild.GetMemberAsync(mentions.First().Id);
-                        var embed = test1.otherprofile(e.Message, user);
+                        var embed = publicCmd.otherprofile(e.Message, user);
                         e.Message.RespondAsync(embed: embed);
+                    }
+                }
+
+                if(msg.ToLower().StartsWith(prefix + "twitch"))
+                {
+                    e.Message.RespondAsync(embed: publicCmd.twitchProfile(e.Message));
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "video"))
+                {
+                    e.Message.RespondAsync(embed: publicCmd.youtubeQuery(e.Message));
+                }
+
+                
+                //admin commands start
+                if (msg.ToLower().StartsWith(prefix + "reset"))
+                {
+                    if (publicCmd.checkAdmin(e.Message))
+                    {
+                        var mentions = e.Message.MentionedUsers;
+
+                        if (mentions.Count == 0)
+                        {
+                            e.Message.RespondAsync($"<@{msgAuthor.Id}>, please mention a user to reset a profile");
+                        }
+                        else
+                        {
+                            var user = await e.Message.Channel.Guild.GetMemberAsync(mentions.First().Id);
+                            e.Message.RespondAsync(embed: publicCmd.resetProfile(e.Message, user));
+
+                        }
+                    }
+                    else
+                    {
+                        e.Message.RespondAsync($"<@{author}>, you do not have access to this command");
+
                     }
                 }
                 
@@ -72,7 +109,7 @@ namespace JonJDigital_Bot_Proj
                         e.Message.RespondAsync("Sorry <@" + e.Message.Author.Id + ">, but this is Developer only command!");
                     }else
                     {                        
-                        e.Message.RespondAsync(test1.ping());
+                        e.Message.RespondAsync(publicCmd.ping());
                     }
                 }
 
