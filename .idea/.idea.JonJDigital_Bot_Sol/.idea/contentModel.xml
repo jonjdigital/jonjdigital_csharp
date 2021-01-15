@@ -9,6 +9,7 @@
       <e p="JonJDigital_Bot_Proj" t="IncludeRecursive">
         <e p=".gitignore" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Jon.png" t="Include" />
         <e p="JonJDigital_Bot_Proj.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

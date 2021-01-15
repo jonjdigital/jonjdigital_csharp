@@ -6,6 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Jon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
@@ -144,7 +146,8 @@
       <workItem from="1610212926199" duration="24579000" />
       <workItem from="1610282011376" duration="720000" />
       <workItem from="1610282754745" duration="2020000" />
-      <workItem from="1610293253273" duration="2635000" />
+      <workItem from="1610293253273" duration="4740000" />
+      <workItem from="1610748150095" duration="5295000" />
     </task>
     <servers />
   </component>

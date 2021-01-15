@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.Entities;
+using MySql.Data.MySqlClient;
 
 namespace JonJDigital_Bot_Proj
 {
@@ -10,6 +13,7 @@ namespace JonJDigital_Bot_Proj
     {
         static void Main(string[] args)
         {
+            
             MainAsync().GetAwaiter().GetResult();
         }
 
@@ -18,6 +22,35 @@ namespace JonJDigital_Bot_Proj
 
             string prefix = Environment.GetEnvironmentVariable("DISCORD_PREFIX");
             string token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+
+            if (prefix != "jb")
+            {
+                MySqlConnection con = new MySqlConnection(Environment.GetEnvironmentVariable("DISCORD_MYSQL"));
+                con.Open();
+                string version = con.ServerVersion;
+                con.Close();
+                var smtp = new SmtpClient("smtp.office365.com")
+                {
+                    Port = 993,
+                    Credentials = new NetworkCredential("bots@jonjdigital.com","J0nJD!g1t@L"),
+                    EnableSsl = true,
+                };
+
+                MailAddress sender = new MailAddress("bots@jonjdigital.com", "Bots");
+                MailMessage message = new MailMessage()
+                {
+                    From = sender,
+                    Subject = "Discord Bot AutoStart Email",
+                    Body =
+                        $"<h1>The discord bot has started up.</h1><hr>This is a courtesy ping to the DB to ensure connection.<br><br><hr>Mysql Server Version: {version}",
+                    IsBodyHtml = true,
+                };
+                
+                message.To.Add("jon.james@jonjdigital.com");
+                smtp.Send(message);
+
+
+            }
             
             var Discord = new DiscordClient(new DiscordConfiguration()
             {
@@ -43,7 +76,7 @@ namespace JonJDigital_Bot_Proj
                 var response = publicCmd.levelUp(e.Message);
                 if (response != "")
                 {
-                    e.Message.RespondAsync(response);
+                    await e.Message.RespondAsync(response);
                 }
 
                 //publicly available commands
@@ -53,62 +86,94 @@ namespace JonJDigital_Bot_Proj
                     
                     if (mentions.Count == 0)
                     {
-                        e.Message.RespondAsync(embed: publicCmd.profile(e.Message));
+                        await e.Message.RespondAsync(embed: publicCmd.profile(e.Message));
                     }
                     else
                     {
                         var user = await e.Message.Channel.Guild.GetMemberAsync(mentions.First().Id);
                         var embed = publicCmd.otherprofile(e.Message, user);
-                        e.Message.RespondAsync(embed: embed);
+                        await e.Message.RespondAsync(embed: embed);
                     }
                 }
 
                 if(msg.ToLower().StartsWith(prefix + "twitch"))
                 {
-                    e.Message.RespondAsync(embed: publicCmd.twitchProfile(e.Message));
+                    await e.Message.RespondAsync(embed: publicCmd.twitchProfile(e.Message));
                 }
 
                 if (msg.ToLower().StartsWith(prefix + "video"))
                 {
-                    e.Message.RespondAsync(embed: publicCmd.youtubeQuery(e.Message));
+                    await e.Message.RespondAsync(embed: publicCmd.youtubeQuery(e.Message));
                 }
 
                 
                 //admin commands start
                 if (msg.ToLower().StartsWith(prefix + "reset"))
                 {
+                    await e.Message.DeleteAsync();
+                    
                     if (publicCmd.checkUserAdmin(e.Message))
                     {
                         var mentions = e.Message.MentionedUsers;
 
                         if (mentions.Count == 0)
                         {
-                            e.Message.RespondAsync($"<@{msgAuthor.Id}>, please mention a user to reset a profile");
+                            await e.Message.RespondAsync($"<@{msgAuthor.Id}>, please mention a user to reset a profile");
                         }
                         else
                         {
                             var user = await e.Message.Channel.Guild.GetMemberAsync(mentions.First().Id);
-                            e.Message.RespondAsync(embed: publicCmd.resetProfile(e.Message, user));
+                            await e.Message.RespondAsync(embed: publicCmd.resetProfile(e.Message, user));
 
                         }
                     }
                     else
                     {
-                        e.Message.RespondAsync($"<@{author}>, you do not have access to this command. You need to be able to Manage Users to use this command.");
+                        await e.Message.RespondAsync($"<@{author}>, you do not have access to this command. You need to be able to Manage Users to use this command.");
 
                     }
                 }
                 
                 if (msg.ToLower() == prefix + "ping")
                 {
+                    await e.Message.DeleteAsync();
+                    
                     // var author = e.Author.Id;
                     if (author != jonjdigital && author != jonjdigital_test)
                     {                        
-                        e.Message.RespondAsync("Sorry <@" + e.Message.Author.Id + ">, but this is Developer only command!");
+                        await e.Message.RespondAsync("Sorry <@" + e.Message.Author.Id + ">, but this is Developer only command!");
                     }else
                     {                        
-                        e.Message.RespondAsync(publicCmd.ping());
+                        await e.Message.RespondAsync(publicCmd.ping());
                     }
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "ar"))
+                {
+                    await e.Message.DeleteAsync();
+                    
+                    if (publicCmd.checkAdmin(e.Message))
+                    {
+                        DiscordUser user = e.Message.MentionedUsers.First();
+                        DiscordRole role = e.Message.MentionedRoles.First();
+                        await e.Message.RespondAsync(embed: publicCmd.addRole(e.Message, user, role));
+                    }else
+                        await e.Message.RespondAsync($"<@{author}>, you do not have access to this command. You need to be able to Manage Users to use this command.");
+
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "rr"))
+                {
+                    await e.Message.DeleteAsync();
+                    
+                    if (publicCmd.checkAdmin(e.Message))
+                    {
+                        DiscordUser user = e.Message.MentionedUsers.First();
+                        DiscordRole role = e.Message.MentionedRoles.First();
+                        await e.Message.RespondAsync(embed: publicCmd.removeRole(e.Message, user, role));
+                    }else
+                        await e.Message.RespondAsync($"<@{author}>, you do not have access to this command. You need to be able to Manage Users to use this command.");
+
                 }
 
             };

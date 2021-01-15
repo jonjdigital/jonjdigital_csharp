@@ -75,7 +75,6 @@ namespace JonJDigital_Bot_Proj
             DiscordMember member = guild.GetMemberAsync(user).Result;
             var roles = member.Roles.ToArray();
             // var roles2 = roles.ToArray();
-            int i = 0;
             var memberRoles = new List<string>();
             foreach (var role in roles)
             {
@@ -344,7 +343,6 @@ namespace JonJDigital_Bot_Proj
             var response2 = response.Content;
             var accessArray = (JObject) JsonConvert.DeserializeObject(response2);
             // var token = accessArray;
-            
 
             return (string) accessArray["access_token"];
         }
@@ -370,35 +368,6 @@ namespace JonJDigital_Bot_Proj
 
             foreach (var result in videoArray["items"])
             {
-                /*switch (result["id"]["kind"].ToString())
-                {
-                    case "youtube#video":
-                        var videoId = videoArray["items"][0]["id"];
-                        var videoSnippet = videoArray["items"][0]["snippet"];
-            
-                        // Console.WriteLine(videoId);
-            
-                        var embed = new DiscordEmbedBuilder()
-                        {
-                            Color = new DiscordColor("#ed0251"),
-                            Title = (string) videoSnippet["title"],
-                            Timestamp = DateTime.UtcNow,
-                            Url = $"https://youtube.com/watch?v={(string)videoId["videoId"]}",
-                            ImageUrl = (string) videoSnippet["thumbnails"]["default"]["url"]
-                        };
-
-                        return embed.Build();
-                    
-                    default:
-                        var embed1 = new DiscordEmbedBuilder()
-                        {
-                            Color = new DiscordColor("#ed0251"),
-                            Title = "No Video Found",
-                            Timestamp = DateTime.UtcNow,
-                        };
-
-                        return embed1.Build();
-                }*/
                 var itemType = result["id"]["kind"].ToString();
                 if (itemType == "youtube#video")
                 {
@@ -460,6 +429,53 @@ namespace JonJDigital_Bot_Proj
             };
 
             return reply1.Build();
+        }
+
+        public DiscordEmbed addRole(DiscordMessage msg, DiscordUser user, DiscordRole role)
+        {
+            DiscordGuild guild = msg.Channel.Guild;
+            DiscordMember member = guild.GetMemberAsync(user.Id).Result;
+            DiscordMember admin = guild.GetMemberAsync(msg.Author.Id).Result;
+            member.GrantRoleAsync(role);
+
+            var reply = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#3fc5e0"),
+                Title = $"The role {role.Name} has been added to {member.DisplayName}.",
+                Timestamp = DateTime.UtcNow,
+            };
+            reply.AddField("Server: ", guild.Name, true);
+            reply.Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail()
+            {
+                Url = user.AvatarUrl
+            };
+            reply.WithFooter(admin.Username+"#"+admin.Discriminator, admin.AvatarUrl);
+
+            return reply.Build();
+
+        }
+        public DiscordEmbed removeRole(DiscordMessage msg, DiscordUser user, DiscordRole role)
+        {
+            DiscordGuild guild = msg.Channel.Guild;
+            DiscordMember member = guild.GetMemberAsync(user.Id).Result;
+            DiscordMember admin = guild.GetMemberAsync(msg.Author.Id).Result;
+            member.RevokeRoleAsync(role);
+
+            var reply = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#3fc5e0"),
+                Title = $"The role {role.Name} has been removed from {member.DisplayName}.",
+                Timestamp = DateTime.UtcNow,
+            };
+            reply.AddField("Server: ", guild.Name, true);
+            reply.Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail()
+            {
+                Url = user.AvatarUrl
+            };
+            reply.WithFooter(admin.Username+"#"+admin.Discriminator, admin.AvatarUrl);
+
+            return reply.Build();
+
         }
     }
     
