@@ -28,21 +28,23 @@ namespace JonJDigital_Bot_Proj
                 MySqlConnection con = new MySqlConnection(Environment.GetEnvironmentVariable("DISCORD_MYSQL"));
                 con.Open();
                 string version = con.ServerVersion;
+                Console.WriteLine(version);
                 con.Close();
                 var smtp = new SmtpClient("smtp.office365.com")
                 {
-                    Port = 993,
+                    Port = 587,
                     Credentials = new NetworkCredential("bots@jonjdigital.com","J0nJD!g1t@L"),
                     EnableSsl = true,
                 };
 
+                var date = DateTime.Now;
                 MailAddress sender = new MailAddress("bots@jonjdigital.com", "Bots");
                 MailMessage message = new MailMessage()
                 {
                     From = sender,
                     Subject = "Discord Bot AutoStart Email",
                     Body =
-                        $"<h1>The discord bot has started up.</h1><hr>This is a courtesy ping to the DB to ensure connection.<br><br><hr>Mysql Server Version: {version}",
+                        $"<h1>The discord bot has started up.</h1><hr>This is a courtesy ping to the DB to ensure connection.<br><br><hr>Mysql Server Version: {version}<hr>Date: {date.Day}/{date.Month}/{date.Year}, Time: {date.Hour}:{date.Minute}",
                     IsBodyHtml = true,
                 };
                 
