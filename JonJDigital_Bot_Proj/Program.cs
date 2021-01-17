@@ -178,6 +178,17 @@ namespace JonJDigital_Bot_Proj
 
                 }
 
+                if (msg.ToLower().StartsWith(prefix + "channelmute"))
+                {
+                    if (publicCmd.checkAdmin(e.Message))
+                    {
+                        DiscordMessage message = e.Message;
+                        DiscordChannel channel = message.MentionedChannels.First();
+
+                        await e.Message.RespondAsync(embed: publicCmd.muteChannel(channel, message));
+                    }
+                }
+
             };
             
             await Discord.ConnectAsync();

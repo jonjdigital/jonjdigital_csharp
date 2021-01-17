@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
@@ -115,51 +116,67 @@ namespace JonJDigital_Bot_Proj
             double exp1 = msg.Content.Length / 2;
             var experience = Math.Ceiling(exp1);
             con.Open();
+            var channelId = msg.Channel.Id;
 
-            var stm = $"select * from levels where user_id={author.Id} and guild_id={guildId}";
-            var cmd = new MySqlCommand(stm, con);
-            
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            
-            if (rdr.Read())
+            var channelStm = $"select * from muted_channels where guild_id = {guildId} and channel_id = {channelId}";
+            var channelCmd = new MySqlCommand(channelStm, con);
+
+            MySqlDataReader channelRdr = channelCmd.ExecuteReader();
+
+            if (!channelRdr.Read())
             {
-                var user = rdr.GetInt64(0);
-                var guild = rdr.GetInt64(1);
-                var exp = rdr.GetInt64(2);
-                var currLevel = rdr.GetInt64(3);
-
-                // var levelBoundary = (((currLevel * 20) * currLevel * 0.8) + currLevel * 100) - 16;
-                var level = currLevel;
-                var newXp = exp + experience;
-                while (newXp >= ((((level * 20) * level * 0.8) + level * 100) - 16))
-                {
-                    level++;
-                }
-                rdr.Close();
-                var sql1 = $"update levels set experience = {newXp}, level = {level} where guild_id = {guild} and user_id = {user}";
-                var cmd11 = new MySqlCommand(sql1, con);
-                cmd11.ExecuteNonQuery();
                 con.Close();
-                if (level != currLevel)
+                con.Open();
+                var stm = $"select * from levels where user_id={author.Id} and guild_id={guildId}";
+                var cmd = new MySqlCommand(stm, con);
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                if (rdr.Read())
                 {
+                    var user = rdr.GetInt64(0);
+                    var guild = rdr.GetInt64(1);
+                    var exp = rdr.GetInt64(2);
+                    var currLevel = rdr.GetInt64(3);
+
+                    // var levelBoundary = (((currLevel * 20) * currLevel * 0.8) + currLevel * 100) - 16;
+                    var level = currLevel;
+                    var newXp = exp + experience;
+                    while (newXp >= ((((level * 20) * level * 0.8) + level * 100) - 16))
+                    {
+                        level++;
+                    }
+
+                    rdr.Close();
+                    var sql1 =
+                        $"update levels set experience = {newXp}, level = {level} where guild_id = {guild} and user_id = {user}";
+                    var cmd11 = new MySqlCommand(sql1, con);
+                    cmd11.ExecuteNonQuery();
+                    con.Close();
+                    if (level != currLevel)
+                    {
+                        return $"Congrats {author.Username} you have levelled up to level {level}!!";
+                    }
+                }
+                else
+                {
+                    var level = 1;
+                    while (experience >= ((((level * 20) * level * 0.8) + level * 100) - 16))
+                    {
+                        level++;
+                    }
+
+                    rdr.Close();
+                    var sql =
+                        $"INSERT INTO levels(user_id, guild_id, experience, level) VALUES({author.Id}, {guildId}, {experience}, {level})";
+                    var cmd1 = new MySqlCommand(sql, con);
+                    cmd1.ExecuteNonQuery();
+                    con.Close();
                     return $"Congrats {author.Username} you have levelled up to level {level}!!";
-                } 
-            }
-            else
-            {
-                var level = 1;
-                while (experience >= ((((level * 20) * level * 0.8) + level * 100) - 16))
-                {
-                    level++;
-                }
-                rdr.Close();
-                var sql = $"INSERT INTO levels(user_id, guild_id, experience, level) VALUES({author.Id}, {guildId}, {experience}, {level})";
-                var cmd1 = new MySqlCommand(sql, con);
-                cmd1.ExecuteNonQuery();
-                con.Close();
-                return $"Congrats {author.Username} you have levelled up to level {level}!!";
 
+                }
             }
+
             return "";
         }
         public DiscordEmbed profile(DiscordMessage msg)
@@ -476,6 +493,52 @@ namespace JonJDigital_Bot_Proj
 
             return reply.Build();
 
+        }
+
+        public DiscordEmbed muteChannel(DiscordChannel channel, DiscordMessage message)
+        {
+            string stm =
+                // $"insert into muted_channels set (guild_id,channel_id) values ({channel.Guild.Id},{channel.Id})";
+                $"select * from muted_channels where channel_id = {channel.Id}";
+            
+            con.Open();
+            var cmd = new MySqlCommand(stm, con);
+
+            DiscordMember member = channel.Guild.GetMemberAsync(message.Author.Id).Result;
+            
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#FF0000"),
+                // Title = $"{channel.Name} has been added to level blacklist."
+                /*Footer =
+                {
+                    Text = member.DisplayName+member.Discriminator,
+                    IconUrl = member.AvatarUrl
+                }*/
+            };
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            
+            if (rdr.Read())
+            {
+                con.Close();
+                embed.Title = "This channel has already been added to the level blacklists.";
+                // Console.WriteLine("Pass: "+ rdr);
+            }
+            else
+            {
+                con.Close();
+                string stm1 = $"insert into muted_channels(guild_id,channel_id) values ({channel.Guild.Id},{channel.Id})";
+                
+                con.Open();
+                var cmd1 = new MySqlCommand(stm1, con);
+
+                MySqlDataReader rdr1 = cmd1.ExecuteReader();
+                embed.Title = $"{channel.Name} has been added to level blacklist.";
+                // Console.WriteLine("False: "+ rdr);
+            }
+
+            return embed.Build();
         }
     }
     
