@@ -540,6 +540,52 @@ namespace JonJDigital_Bot_Proj
 
             return embed.Build();
         }
+        public DiscordEmbed unmuteChannel(DiscordChannel channel, DiscordMessage message)
+        {
+            string stm =
+                // $"insert into muted_channels set (guild_id,channel_id) values ({channel.Guild.Id},{channel.Id})";
+                $"select * from muted_channels where channel_id = {channel.Id}";
+            
+            con.Open();
+            var cmd = new MySqlCommand(stm, con);
+
+            DiscordMember member = channel.Guild.GetMemberAsync(message.Author.Id).Result;
+            
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#FF0000"),
+                // Title = $"{channel.Name} has been added to level blacklist."
+                /*Footer =
+                {
+                    Text = member.DisplayName+member.Discriminator,
+                    IconUrl = member.AvatarUrl
+                }*/
+            };
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            
+            if (rdr.Read())
+            {
+                con.Close();
+                string stm1 = $"delete from muted_channels where channel_id={channel.Id}";
+                Console.WriteLine(stm1);
+                con.Open();
+                var cmd1 = new MySqlCommand(stm1, con);
+
+                MySqlDataReader rdr1 = cmd1.ExecuteReader();
+                embed.Title = $"{channel.Name} has been removed from level blacklist.";
+                // Console.WriteLine("False: "+ rdr);
+            }
+            else
+            {
+                
+                con.Close();
+                embed.Title = "This channel has not been added to the level blacklists.";
+                // Console.WriteLine("Pass: "+ rdr);
+            }
+
+            return embed.Build();
+        }
     }
     
 }

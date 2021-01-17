@@ -178,14 +178,35 @@ namespace JonJDigital_Bot_Proj
 
                 }
 
-                if (msg.ToLower().StartsWith(prefix + "channelmute"))
+                if ((msg.ToLower().StartsWith(prefix + "channelmute"))||(msg.ToLower().StartsWith(prefix + "mutechannel"))||(msg.ToLower().StartsWith(prefix + "cm")))
                 {
+                    DiscordMessage message = e.Message;
+                    await message.DeleteAsync();
                     if (publicCmd.checkAdmin(e.Message))
                     {
-                        DiscordMessage message = e.Message;
                         DiscordChannel channel = message.MentionedChannels.First();
 
-                        await e.Message.RespondAsync(embed: publicCmd.muteChannel(channel, message));
+                        await message.RespondAsync(embed: publicCmd.muteChannel(channel, message));
+                    }
+                    else
+                    {
+                        await message.RespondAsync($"Apologies <@{message.Author.Id}>, but only an admin can use this command");
+                    }
+                }
+                
+                if ((msg.ToLower().StartsWith(prefix + "channelunmute"))||(msg.ToLower().StartsWith(prefix + "unmutechannel"))||(msg.ToLower().StartsWith(prefix + "cu")))
+                {
+                    DiscordMessage message = e.Message;
+                    await message.DeleteAsync();
+                    if (publicCmd.checkAdmin(e.Message))
+                    {
+                        DiscordChannel channel = message.MentionedChannels.First();
+
+                        await message.RespondAsync(embed: publicCmd.unmuteChannel(channel, message));
+                    }
+                    else
+                    {
+                        await message.RespondAsync($"Apologies <@{message.Author.Id}>, but only an admin can use this command");
                     }
                 }
 
