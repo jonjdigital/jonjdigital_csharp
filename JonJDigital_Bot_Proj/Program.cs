@@ -210,6 +210,14 @@ namespace JonJDigital_Bot_Proj
                     }
                 }
 
+                if (msg.ToLower() == prefix + "muted")
+                {
+                    DiscordMessage message = e.Message;
+                    if (publicCmd.checkAdmin(message))
+                    {
+                        await message.RespondAsync(embed: publicCmd.listBlacklistedChannels(message));
+                    }
+                }
             };
             
             await Discord.ConnectAsync();

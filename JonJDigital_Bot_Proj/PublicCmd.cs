@@ -586,6 +586,35 @@ namespace JonJDigital_Bot_Proj
 
             return embed.Build();
         }
+
+        public DiscordEmbed listBlacklistedChannels(DiscordMessage message)
+        {
+            DiscordMember member = message.Channel.Guild.GetMemberAsync(message.Author.Id).Result;
+            var stm = $"select * from muted_channels where guild_id={message.Channel.Guild.Id}";
+            con.Open();
+            var cmd = new MySqlCommand(stm, con);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("FF0000")
+            };
+            embed.WithFooter(member.DisplayName, member.AvatarUrl);
+            var channelList = "";
+            while (rdr.Read())
+            {
+                var channels = rdr.GetInt64(1);
+                Console.WriteLine(channels);
+
+                var channel = message.Channel.Guild.GetChannel((ulong) channels);
+                channelList += "\n " +channel.Name;
+            }
+
+            embed.AddField("Blacklisted Channels: ", channelList);
+
+            return embed.Build();
+        }
     }
     
 }

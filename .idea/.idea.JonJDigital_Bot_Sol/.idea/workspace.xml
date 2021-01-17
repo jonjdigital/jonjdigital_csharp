@@ -6,6 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources/463ce7be-3760-4ff4-a6b3-c66ba071309e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources/463ce7be-3760-4ff4-a6b3-c66ba071309e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
@@ -53,8 +54,8 @@
       <option value="$PROJECT_DIR$/TEST/Program.cs" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
       <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
     </changedPaths>
   </component>
@@ -147,7 +148,7 @@
       <workItem from="1610282754745" duration="2020000" />
       <workItem from="1610293253273" duration="4740000" />
       <workItem from="1610748150095" duration="6337000" />
-      <workItem from="1610840409576" duration="6538000" />
+      <workItem from="1610840409576" duration="8139000" />
     </task>
     <servers />
   </component>
@@ -173,36 +174,6 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs</url>
-          <line>200</line>
-          <properties documentPath="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol\JonJDigital_Bot_Proj\Program.cs" initialLine="200" containingFunctionPresentation="lambda expression inside method 'MainAsync'">
-            <startOffsets>
-              <option value="8302" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8338" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs</url>
-          <line>551</line>
-          <properties documentPath="E:\Code\C# Code\DiscordAttempt1\JonJDigital_Bot_Sol\JonJDigital_Bot_Proj\PublicCmd.cs" initialLine="551" containingFunctionPresentation="method 'unmuteChannel'">
-            <startOffsets>
-              <option value="23275" />
-            </startOffsets>
-            <endOffsets>
-              <option value="23353" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.Net.Http.Headers.HttpContentHeaders" memberName="Allow" />
