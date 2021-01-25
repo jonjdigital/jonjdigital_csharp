@@ -30,9 +30,10 @@ namespace JonJDigital_Bot_Proj
     public class PublicCmd
     {
         private static string TwitchID = Environment.GetEnvironmentVariable("DISCORD_TWITCH_CLIENT");
+        private static string prefix = Environment.GetEnvironmentVariable("DISCORD_PREFIX");
         private static string TwitchSecret = Environment.GetEnvironmentVariable("DISCORD_TWITCH_SECRET");
         private static string YoutubeAPI = Environment.GetEnvironmentVariable("DISCORD_YOUTUBE_API");
-        private static string redirect = WebUtility.UrlEncode("https://localhost");
+        // private static string redirect = WebUtility.UrlEncode("https://localhost");
         private string authUri = $"https://id.twitch.tv/oauth2/token?client_id={TwitchID}&client_secret={TwitchSecret}&grant_type=client_credentials";
         
         private static string conStr = Environment.GetEnvironmentVariable("DISCORD_MYSQL");
@@ -118,14 +119,36 @@ namespace JonJDigital_Bot_Proj
             con.Open();
             var channelId = msg.Channel.Id;
 
+            bool channelMute = false;
+            bool userMute = false;
+
             var channelStm = $"select * from muted_channels where guild_id = {guildId} and channel_id = {channelId}";
             var channelCmd = new MySqlCommand(channelStm, con);
-
+            
             MySqlDataReader channelRdr = channelCmd.ExecuteReader();
-
-            if (!channelRdr.Read())
+            
+            if (channelRdr.Read())
             {
-                con.Close();
+                channelMute = true;
+            }
+            
+            con.Close();
+
+            con.Open();
+            
+            var userStm = $"select * from user_mutes where guild_id = {guildId} and user_id = {author.Id}";
+            var userCmd = new MySqlCommand(userStm, con);
+            
+            MySqlDataReader userRdr = userCmd.ExecuteReader();
+
+            if (userRdr.Read())
+            {
+                userMute = true;
+            }
+            
+            con.Close();
+            
+            if(!userMute && !channelMute){
                 con.Open();
                 var stm = $"select * from levels where user_id={author.Id} and guild_id={guildId}";
                 var cmd = new MySqlCommand(stm, con);
@@ -175,6 +198,7 @@ namespace JonJDigital_Bot_Proj
                     return $"Congrats {author.Username} you have levelled up to level {level}!!";
 
                 }
+
             }
 
             return "";
@@ -587,6 +611,90 @@ namespace JonJDigital_Bot_Proj
             return embed.Build();
         }
 
+        public DiscordEmbed userGuildMute(DiscordChannel channel, DiscordMessage message)
+        {
+            DiscordGuild guild = channel.Guild;
+            DiscordUser author = message.Author;
+            DiscordMember member = guild.GetMemberAsync(author.Id).Result;
+
+            string userStm = $"select * from user_mutes where guild_id = {guild.Id} and user_id = {author.Id}";
+            
+            con.Open();
+            MySqlCommand cmd = new MySqlCommand(userStm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#FF0000"),
+            };
+
+            if (rdr.Read())
+            {
+                con.Close();
+                embed.Title =
+                    $"{member.DisplayName}, your levels are already disabled for this server. To enable your levels, please us the {prefix}enable command";
+                embed.WithFooter(member.DisplayName, member.AvatarUrl);
+            }
+            else
+            {
+                con.Close();
+                con.Open();
+                string muteStm = $"insert into user_mutes(guild_id,user_id) values({guild.Id},{author.Id})";
+                MySqlCommand mutecmd = new MySqlCommand(muteStm, con);
+                MySqlDataReader muterdr = mutecmd.ExecuteReader();
+                if (!muterdr.Read())
+                {
+                    embed.Title =
+                        $"{member.DisplayName}, your levelling has been disabled in this server. To enable your levels, please us the {prefix}enable command";
+                    embed.WithFooter(member.DisplayName, member.AvatarUrl);
+                }
+            }
+
+            return embed.Build();
+        }
+        
+        public DiscordEmbed userGuildUnmute(DiscordChannel channel, DiscordMessage message)
+        {
+            DiscordGuild guild = channel.Guild;
+            DiscordUser author = message.Author;
+            DiscordMember member = guild.GetMemberAsync(author.Id).Result;
+
+            string userStm = $"select * from user_mutes where guild_id = {guild.Id} and user_id = {author.Id}";
+            
+            con.Open();
+            MySqlCommand cmd = new MySqlCommand(userStm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#FF0000"),
+            };
+
+            if (!rdr.Read())
+            {
+                con.Close();
+                embed.Title =
+                    $"{member.DisplayName}, your levels are already enabled for this server. To disable your levels, please us the {prefix}disable command";
+                embed.WithFooter(member.DisplayName, member.AvatarUrl);
+            }
+            else
+            {
+                con.Close();
+                con.Open();
+                string muteStm = $"delete from user_mutes where guild_id = {guild.Id} and user_id = {author.Id}";
+                MySqlCommand mutecmd = new MySqlCommand(muteStm, con);
+                MySqlDataReader muterdr = mutecmd.ExecuteReader();
+                if (!muterdr.Read())
+                {
+                    embed.Title =
+                        $"{member.DisplayName}, your levelling has been enabled in this server. To disable your levels, please us the {prefix}disable command";
+                    embed.WithFooter(member.DisplayName, member.AvatarUrl);
+                }
+            }
+
+            return embed.Build();
+        }
+        
         public DiscordEmbed listBlacklistedChannels(DiscordMessage message)
         {
             DiscordMember member = message.Channel.Guild.GetMemberAsync(message.Author.Id).Result;

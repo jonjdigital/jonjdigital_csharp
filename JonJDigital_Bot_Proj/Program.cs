@@ -108,6 +108,15 @@ namespace JonJDigital_Bot_Proj
                     await e.Message.RespondAsync(embed: publicCmd.youtubeQuery(e.Message));
                 }
 
+                if (msg.ToLower() == prefix + "enable")
+                {
+                    await e.Message.RespondAsync(embed: publicCmd.userGuildUnmute(e.Message.Channel, e.Message));
+                }
+                
+                if (msg.ToLower() == prefix + "disable")
+                {
+                    await e.Message.RespondAsync(embed: publicCmd.userGuildMute(e.Message.Channel, e.Message));
+                }
                 
                 //admin commands start
                 if (msg.ToLower().StartsWith(prefix + "reset"))
