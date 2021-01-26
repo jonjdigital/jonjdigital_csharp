@@ -72,7 +72,7 @@ namespace JonJDigital_Bot_Proj
                 ulong jonjdigital_test = 691346983494877216;
                 
                 string msg = e.Message.Content;
-                var msgAuthor = e.Message.Author;
+                DiscordUser msgAuthor = e.Message.Author;
                 ulong author = e.Message.Author.Id;
 
                 var response = publicCmd.levelUp(e.Message);
@@ -163,7 +163,7 @@ namespace JonJDigital_Bot_Proj
                 {
                     await e.Message.DeleteAsync();
                     
-                    if (publicCmd.checkAdmin(e.Message))
+                    if (publicCmd.checkServerAdmin(e.Message))
                     {
                         DiscordUser user = e.Message.MentionedUsers.First();
                         DiscordRole role = e.Message.MentionedRoles.First();
@@ -177,7 +177,7 @@ namespace JonJDigital_Bot_Proj
                 {
                     await e.Message.DeleteAsync();
                     
-                    if (publicCmd.checkAdmin(e.Message))
+                    if (publicCmd.checkServerAdmin(e.Message))
                     {
                         DiscordUser user = e.Message.MentionedUsers.First();
                         DiscordRole role = e.Message.MentionedRoles.First();
@@ -191,7 +191,7 @@ namespace JonJDigital_Bot_Proj
                 {
                     DiscordMessage message = e.Message;
                     await message.DeleteAsync();
-                    if (publicCmd.checkAdmin(e.Message))
+                    if (publicCmd.checkServerAdmin(e.Message))
                     {
                         DiscordChannel channel = message.MentionedChannels.First();
 
@@ -207,7 +207,7 @@ namespace JonJDigital_Bot_Proj
                 {
                     DiscordMessage message = e.Message;
                     await message.DeleteAsync();
-                    if (publicCmd.checkAdmin(e.Message))
+                    if (publicCmd.checkServerAdmin(e.Message))
                     {
                         DiscordChannel channel = message.MentionedChannels.First();
 
@@ -222,9 +222,37 @@ namespace JonJDigital_Bot_Proj
                 if (msg.ToLower() == prefix + "muted")
                 {
                     DiscordMessage message = e.Message;
-                    if (publicCmd.checkAdmin(message))
+                    if (publicCmd.checkServerAdmin(message))
                     {
                         await message.RespondAsync(embed: publicCmd.listBlacklistedChannels(message));
+                    }
+                }
+                
+                //Moderation commands start
+
+                if (msg.ToLower().StartsWith(prefix + "kick"))
+                {
+                    if (publicCmd.checkServerAdmin(e.Message))
+                    {
+                        int userCount = e.Message.MentionedUsers.Count();
+                        DiscordUser mentioned = e.Message.MentionedUsers.First();
+
+                        if (userCount != 1)
+                        {
+                            await e.Message.RespondAsync($"<@{author}>, please mention one user!");
+                        }
+                        else
+                        {
+                            DiscordGuild guild = e.Message.Channel.Guild;
+                            DiscordMember member = guild.GetMemberAsync(mentioned.Id).Result;
+
+                            await e.Message.RespondAsync(embed: publicCmd.kickUser(member, guild, e.Message));
+
+                        }
+                    }
+                    else
+                    {
+                        await e.Message.RespondAsync($"Apologies <@{author}>, but only an Admin can use this command");
                     }
                 }
             };

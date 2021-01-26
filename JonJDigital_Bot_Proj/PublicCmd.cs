@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,17 +10,20 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.Entities;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Web;
+using DSharpPlus.Exceptions;
 using Emzi0767.Utilities;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Tsp;
 using Org.BouncyCastle.Utilities.Encoders;
 using RestSharp;
@@ -29,6 +33,18 @@ namespace JonJDigital_Bot_Proj
 {
     public class PublicCmd
     {
+                // admin checks
+                /*if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.Administrator))return true; //overall admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.KickMembers))return true; //user admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.BanMembers))return true; //user admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageChannels))return true; //server admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageEmojis))return true; //server admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageGuild))return true; //server admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageMessages))return true; //server admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageNicknames))return true; //user admin
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageWebhooks))return true; //server admin 
+                if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageRoles))return true; //server admin*/
+                
         private static string TwitchID = Environment.GetEnvironmentVariable("DISCORD_TWITCH_CLIENT");
         private static string prefix = Environment.GetEnvironmentVariable("DISCORD_PREFIX");
         private static string TwitchSecret = Environment.GetEnvironmentVariable("DISCORD_TWITCH_SECRET");
@@ -43,20 +59,19 @@ namespace JonJDigital_Bot_Proj
         private string YoutubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q="; //add keyword and key onto end
         private MySqlConnection con = new MySqlConnection(conStr);
         
-        public bool checkAdmin(DiscordMessage msg)
+        
+        //generic checkers and functions
+        public bool checkServerAdmin(DiscordMessage msg)
         {
             var guild = msg.Channel.Guild;
             DiscordMember member = guild.GetMemberAsync(msg.Author.Id).Result;
             
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.Administrator))return true; //overall admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.KickMembers))return true; //user admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.BanMembers))return true; //user admin
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageChannels))return true; //server admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageEmojis))return true; //server admin
+            // if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageEmojis))return true; //server admin
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageGuild))return true; //server admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageMessages))return true; //server admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageNicknames))return true; //user admin
-            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageWebhooks))return true; //server admin 
+            // if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageMessages))return true; //server admin
+            // if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageWebhooks))return true; //server admin 
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageRoles))return true; //server admin
             return false;
         }
@@ -102,6 +117,8 @@ namespace JonJDigital_Bot_Proj
         {
 
         }
+        
+        // command events
         public string ping()
         {
             con.Open();
@@ -722,6 +739,76 @@ namespace JonJDigital_Bot_Proj
             embed.AddField("Blacklisted Channels: ", channelList);
 
             return embed.Build();
+        }
+
+        //MODERATION COMMAND EVENTS
+        public DiscordEmbed kickUser(DiscordMember member, DiscordGuild guild, DiscordMessage msg)
+        {
+            DiscordUser author = msg.Author;
+            string[] content = msg.Content.Split(" ");
+            var args = content.Skip(1).ToArray();
+            string response = "";
+            
+            var embed = new DiscordEmbedBuilder()
+            {
+                Color = new DiscordColor("#FF0000"),
+            };
+            
+            foreach (var arg in args)
+            {
+                if (arg != member.Mention)
+                {
+                    response += " " + arg;
+                }
+            }
+
+            response = response.TrimStart();
+            // Console.WriteLine(response);
+            if (response == "")
+            {
+                response = "No response given";
+            }
+
+            var kick = member.RemoveAsync(response);
+            /*if (kick.IsCompletedSuccessfully)
+            {
+                embed.Title = $"{member.Username}#{member.Discriminator} has been kicked successfully";
+                embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
+                return embed.Build();
+            }
+            embed.Title = $"Unable to kick {member.Username}#{member.Discriminator}.";
+            var error = kick.Exception;
+            embed.Description = "Please see below for the Error.";
+            // embed.AddField("Error:", kick.Exception.Message);
+            Console.WriteLine(error);*/
+            // Console.WriteLine(kick);
+            while (true)
+            {
+                if (kick.Status == TaskStatus.Faulted)
+                {
+                    embed.Title = $"Unable to kick {member.Username}#{member.Discriminator}.";
+                    embed.Description = "Please see reason for failure below.";
+                    string error = kick.Exception.Message;
+                    if (error == "One or more errors occurred. (Unauthorized: 403)")
+                    {
+                        error = "Insufficicent permissions";
+                    }
+                    embed.AddField("Error:", error, true);
+                    embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
+                    return embed.Build();
+                }
+
+                if (kick.Status == TaskStatus.RanToCompletion)
+                {
+                    embed.Title = $"{member.Username}#{member.Discriminator} has been kicked successfully";
+                    embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
+                    return embed.Build();
+                }
+            }
+            
+            embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
+            return embed.Build();
+
         }
     }
     
