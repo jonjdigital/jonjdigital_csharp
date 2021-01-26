@@ -788,6 +788,7 @@ namespace JonJDigital_Bot_Proj
                 {
                     embed.Title = $"Unable to kick {member.Username}#{member.Discriminator}.";
                     embed.Description = "Please see reason for failure below.";
+                    
                     string error = kick.Exception.Message;
                     if (error == "One or more errors occurred. (Unauthorized: 403)")
                     {
@@ -805,9 +806,6 @@ namespace JonJDigital_Bot_Proj
                     return embed.Build();
                 }
             }
-            
-            embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
-            return embed.Build();
 
         }
     }
