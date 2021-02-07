@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.Entities;
@@ -63,6 +64,7 @@ namespace JonJDigital_Bot_Proj
             Discord.MessageCreated += async (s, e) =>
             {
                 PublicCmd publicCmd = new PublicCmd();
+                GuildLeaderboard leaderboard = new GuildLeaderboard();
 
                 //ignore bots own messages
                 if(e.Message.Author.IsBot) return;
@@ -119,7 +121,7 @@ namespace JonJDigital_Bot_Proj
                 }
                 
                 //admin commands start
-                if (msg.ToLower().StartsWith(prefix + "reset"))
+                if (msg.ToLower().StartsWith(prefix + "!reset"))
                 {
                     await e.Message.DeleteAsync();
                     
@@ -145,7 +147,7 @@ namespace JonJDigital_Bot_Proj
                     }
                 }
                 
-                if (msg.ToLower() == prefix + "ping")
+                if (msg.ToLower() == prefix + "!ping")
                 {
                     await e.Message.DeleteAsync();
                     
@@ -159,7 +161,7 @@ namespace JonJDigital_Bot_Proj
                     }
                 }
 
-                if (msg.ToLower().StartsWith(prefix + "ar"))
+                if (msg.ToLower().StartsWith(prefix + "!ar"))
                 {
                     await e.Message.DeleteAsync();
                     
@@ -173,7 +175,7 @@ namespace JonJDigital_Bot_Proj
 
                 }
 
-                if (msg.ToLower().StartsWith(prefix + "rr"))
+                if (msg.ToLower().StartsWith(prefix + "!rr"))
                 {
                     await e.Message.DeleteAsync();
                     
@@ -187,7 +189,7 @@ namespace JonJDigital_Bot_Proj
 
                 }
 
-                if ((msg.ToLower().StartsWith(prefix + "channelmute"))||(msg.ToLower().StartsWith(prefix + "mutechannel"))||(msg.ToLower().StartsWith(prefix + "cm")))
+                if ((msg.ToLower().StartsWith(prefix + "!channelmute"))||(msg.ToLower().StartsWith(prefix + "mutechannel"))||(msg.ToLower().StartsWith(prefix + "cm")))
                 {
                     DiscordMessage message = e.Message;
                     await message.DeleteAsync();
@@ -203,7 +205,7 @@ namespace JonJDigital_Bot_Proj
                     }
                 }
                 
-                if ((msg.ToLower().StartsWith(prefix + "channelunmute"))||(msg.ToLower().StartsWith(prefix + "unmutechannel"))||(msg.ToLower().StartsWith(prefix + "cu")))
+                if ((msg.ToLower().StartsWith(prefix + "!channelunmute"))||(msg.ToLower().StartsWith(prefix + "unmutechannel"))||(msg.ToLower().StartsWith(prefix + "cu")))
                 {
                     DiscordMessage message = e.Message;
                     await message.DeleteAsync();
@@ -219,7 +221,7 @@ namespace JonJDigital_Bot_Proj
                     }
                 }
 
-                if (msg.ToLower() == prefix + "muted")
+                if (msg.ToLower() == prefix + "!muted")
                 {
                     DiscordMessage message = e.Message;
                     if (publicCmd.checkServerAdmin(message))
@@ -230,7 +232,61 @@ namespace JonJDigital_Bot_Proj
                 
                 //Moderation commands start
 
-                if (msg.ToLower().StartsWith(prefix + "kick"))
+                if (msg.ToLower().StartsWith(prefix + "!autoroleadd"))
+                {
+                    if (publicCmd.checkRoleAdmin(e.Message))
+                    {
+                        var roleMentions = e.Message.MentionedRoles;
+                        int roleCount = roleMentions.Count();
+
+                        if (roleCount != 1)
+                        {
+                            await e.Message.DeleteAsync();
+                            await e.Message.RespondAsync($"{msgAuthor.Mention}, please mention one role only!");
+                        }
+                        else
+                        {
+                            DiscordRole role = roleMentions.First();
+                            await e.Message.DeleteAsync();
+                            await e.Message.RespondAsync(embed: publicCmd.addAutoRole(e.Message.Channel.Guild, role,
+                                msgAuthor));
+                        }
+                    }
+                    else
+                    {
+                        await e.Message.RespondAsync(
+                            $"<@{author}>, you must have MANAGE_ROLES permissions to use this command.");
+                    }
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "!autoroleremove"))
+                {
+                    if (publicCmd.checkRoleAdmin(e.Message))
+                    {
+                        var roleMentions = e.Message.MentionedRoles;
+                        int roleCount = roleMentions.Count();
+
+                        if (roleCount != 1)
+                        {
+                            await e.Message.DeleteAsync();
+                            await e.Message.RespondAsync($"{msgAuthor.Mention}, please mention one role only!");
+                        }
+                        else
+                        {
+                            DiscordRole role = roleMentions.First();
+                            await e.Message.DeleteAsync();
+                            await e.Message.RespondAsync(embed: publicCmd.removeAutoRole(e.Message.Channel.Guild, role,
+                                msgAuthor));
+                        }
+                    }
+                    else
+                    {
+                        await e.Message.RespondAsync(
+                            $"<@{author}>, you must have MANAGE_ROLES permissions to use this command.");
+                    }
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "!kick"))
                 {
                     if (publicCmd.checkServerAdmin(e.Message))
                     {
@@ -254,6 +310,11 @@ namespace JonJDigital_Bot_Proj
                     {
                         await e.Message.RespondAsync($"Apologies <@{author}>, but only an Admin can use this command");
                     }
+                }
+
+                if (msg.ToLower() == prefix + "leaderboard" || msg.ToLower() == prefix + "top20")
+                {
+                    await e.Message.RespondAsync(embed: leaderboard.getLeaderBoard(e.Message.Channel.Guild));
                 }
             };
             

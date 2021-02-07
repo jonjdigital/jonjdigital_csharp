@@ -940,52 +940,108 @@ SELECT|sys.sys_config
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE|jonjdigital
 </ObjectGrants>
     </user>
-    <table id="291" parent="6" name="levels"/>
-    <table id="292" parent="6" name="muted_channels"/>
-    <table id="293" parent="6" name="user_mutes"/>
-    <column id="294" parent="291" name="user_id">
+    <table id="291" parent="6" name="auto_roles"/>
+    <table id="292" parent="6" name="levels"/>
+    <table id="293" parent="6" name="log_channels"/>
+    <table id="294" parent="6" name="muted_channels"/>
+    <table id="295" parent="6" name="user_mutes"/>
+    <column id="296" parent="291" name="autorole_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="295" parent="291" name="guild_id">
+    <column id="297" parent="291" name="guild_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="296" parent="291" name="experience">
+    <column id="298" parent="291" name="role_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="297" parent="291" name="level">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="298" parent="292" name="guild_id">
+    <index id="299" parent="291" name="auto_roles_autorole_id_uindex">
+      <ColNames>autorole_id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="300" parent="291" name="auto_roles_role_id_uindex">
+      <ColNames>role_id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="301" parent="291" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>autorole_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="302" parent="291" name="auto_roles_autorole_id_uindex">
+      <ColNames>autorole_id</ColNames>
+      <UnderlyingIndexName>auto_roles_autorole_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="303" parent="291" name="auto_roles_role_id_uindex">
+      <ColNames>role_id</ColNames>
+      <UnderlyingIndexName>auto_roles_role_id_uindex</UnderlyingIndexName>
+    </key>
+    <column id="304" parent="292" name="user_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="292" name="channel_id">
+    <column id="305" parent="292" name="guild_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="300" parent="292" name="muted_channels_channel_id_uindex">
+    <column id="306" parent="292" name="experience">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="307" parent="292" name="level">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="308" parent="293" name="guild_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="309" parent="293" name="channel_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="310" parent="293" name="log_type">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="311" parent="294" name="guild_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="312" parent="294" name="channel_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="313" parent="294" name="muted_channels_channel_id_uindex">
       <ColNames>channel_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="301" parent="292" name="muted_channels_channel_id_uindex">
+    <key id="314" parent="294" name="muted_channels_channel_id_uindex">
       <ColNames>channel_id</ColNames>
       <UnderlyingIndexName>muted_channels_channel_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="302" parent="293" name="guild_id">
+    <column id="315" parent="295" name="guild_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="303" parent="293" name="user_id">
+    <column id="316" parent="295" name="user_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
     </column>

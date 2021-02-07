@@ -86,6 +86,13 @@ namespace JonJDigital_Bot_Proj
             if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageNicknames))return true; //user admin
             return false;
         }
+        public bool checkRoleAdmin(DiscordMessage msg)
+        {
+            var guild = msg.Channel.Guild;
+            DiscordMember member = guild.GetMemberAsync(msg.Author.Id).Result;
+            if(member.PermissionsIn(msg.Channel).HasPermission(Permissions.ManageRoles))return true; //server admin
+            return false;
+        }
         public string getRoles(ulong user, DiscordMessage msg)
         {
             var guild = msg.Channel.Guild;
@@ -770,18 +777,7 @@ namespace JonJDigital_Bot_Proj
             }
 
             var kick = member.RemoveAsync(response);
-            /*if (kick.IsCompletedSuccessfully)
-            {
-                embed.Title = $"{member.Username}#{member.Discriminator} has been kicked successfully";
-                embed.WithFooter(author.Username + "#" + author.Discriminator, author.AvatarUrl);
-                return embed.Build();
-            }
-            embed.Title = $"Unable to kick {member.Username}#{member.Discriminator}.";
-            var error = kick.Exception;
-            embed.Description = "Please see below for the Error.";
-            // embed.AddField("Error:", kick.Exception.Message);
-            Console.WriteLine(error);*/
-            // Console.WriteLine(kick);
+
             while (true)
             {
                 if (kick.Status == TaskStatus.Faulted)
@@ -808,6 +804,111 @@ namespace JonJDigital_Bot_Proj
             }
 
         }
+
+        public DiscordEmbed addAutoRole(DiscordGuild guild, DiscordRole role, DiscordUser author)
+        {
+
+            DiscordMember member = guild.GetMemberAsync(author.Id).Result;
+
+            DiscordEmbedBuilder embed = new DiscordEmbedBuilder()
+            {
+                Footer = new DiscordEmbedBuilder.EmbedFooter()
+                {
+                    IconUrl = author.AvatarUrl,
+                    Text = member.DisplayName + "#" + member.Discriminator
+                },
+                Color = member.Color
+            };
+            
+            string stm = $"select * from auto_roles where role_id = {role.Id}";
+            
+            con.Open();
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if (!rdr.Read())
+            {
+                con.Close();
+                con.Open();
+                string roleSave = $"insert into auto_roles(guild_id,role_id) values({guild.Id},{role.Id})";
+                MySqlCommand cmd1 = new MySqlCommand(roleSave, con);
+                MySqlDataReader rdr1 = cmd1.ExecuteReader();
+
+                if (!rdr1.Read())
+                {
+                    con.Close();
+                    embed.Title = $"{role.Name} has been added to AutoRoles for {guild.Name}";
+                    embed.Timestamp = DateTime.UtcNow;
+                }
+                else
+                {
+                    con.Close();
+                    embed.Title = $"Error adding {role.Mention} to AutoRoles";
+                    embed.Timestamp = DateTime.UtcNow;
+                }
+            }
+            else
+            {
+                con.Close();
+                embed.Title = $"{role.Name} has already been added to AutoRoles for {guild.Name}, please use {prefix}!autoroleremove to remove this role";
+                embed.Timestamp = DateTime.UtcNow;
+            }
+
+            return embed.Build();
+        }
+        
+        public DiscordEmbed removeAutoRole(DiscordGuild guild, DiscordRole role, DiscordUser author)
+        {
+
+            DiscordMember member = guild.GetMemberAsync(author.Id).Result;
+
+            DiscordEmbedBuilder embed = new DiscordEmbedBuilder()
+            {
+                Footer = new DiscordEmbedBuilder.EmbedFooter()
+                {
+                    IconUrl = author.AvatarUrl,
+                    Text = member.DisplayName + "#" + member.Discriminator
+                },
+                Color = member.Color
+            };
+            
+            string stm = $"select * from auto_roles where role_id = {role.Id}";
+            
+            con.Open();
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                con.Close();
+                con.Open();
+                string roleSave = $"delete from auto_roles where role_id = {role.Id}";
+                MySqlCommand cmd1 = new MySqlCommand(roleSave, con);
+                MySqlDataReader rdr1 = cmd1.ExecuteReader();
+
+                if (!rdr1.Read())
+                {
+                    con.Close();
+                    embed.Title = $"{role.Name} has been removed from AutoRoles for {guild.Name}";
+                    embed.Timestamp = DateTime.UtcNow;
+                }
+                else
+                {
+                    con.Close();
+                    embed.Title = $"Error removing {role.Mention} from AutoRoles";
+                    embed.Timestamp = DateTime.UtcNow;
+                }
+            }
+            else
+            {
+                con.Close();
+                embed.Title = $"{role.Name} has not been added to AutoRoles for {guild.Name}, please use {prefix}!autoroleadd to add this role";
+                embed.Timestamp = DateTime.UtcNow;
+            }
+
+            return embed.Build();
+        }
+
     }
     
 }
