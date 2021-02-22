@@ -1,4 +1,5 @@
 ﻿using System;
+using DSharpPlus;
 using DSharpPlus.Entities;
 using MySql.Data.MySqlClient;
 
@@ -9,7 +10,7 @@ namespace JonJDigital_Bot_Proj
         private static string conStr = Environment.GetEnvironmentVariable("DISCORD_MYSQL");
         private MySqlConnection con = new MySqlConnection(conStr);
 
-        public DiscordEmbed getLeaderBoard(DiscordGuild guild)
+        public DiscordEmbed getLeaderBoard(DiscordGuild guild, DiscordClient client)
         {
 
             ulong guild_id = guild.Id;
@@ -38,12 +39,10 @@ namespace JonJDigital_Bot_Proj
                 var level = rdr.GetInt64(3);
                 position++;
                 DiscordMember member = guild.GetMemberAsync((ulong) user_id).Result;
-                var user = member.DisplayName + " - (" + member.Username + "#" + member.Discriminator + ")";
-                string response =  user + ", Experience: " + experience + ", Level: " + level;
 
-                // embed.AddField("Experience: ", exp1);
-                // embed.AddField("User: ", member.DisplayName);
-                // embed.AddField("Level: ", level.ToString());
+                string user = "";
+                user = member.DisplayName + " - (" + member.Username + "#" + member.Discriminator + ")";
+                string response =  user + ", Experience: " + experience + ", Level: " + level;
                 embed.AddField(position + " - "+ response, "\u200b");
 
                 

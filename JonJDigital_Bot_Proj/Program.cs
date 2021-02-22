@@ -314,10 +314,22 @@ namespace JonJDigital_Bot_Proj
 
                 if (msg.ToLower() == prefix + "leaderboard" || msg.ToLower() == prefix + "top20")
                 {
-                    await e.Message.RespondAsync(embed: leaderboard.getLeaderBoard(e.Message.Channel.Guild));
+                    await e.Message.RespondAsync(embed: leaderboard.getLeaderBoard(e.Message.Channel.Guild, Discord));
                 }
             };
+
+            Discord.GuildMemberRemoved += async (sender, args) =>
+            {
+                PublicCmd cmd = new PublicCmd();
+                Console.WriteLine(cmd.removeUserLevels(args.Guild.Id,args.Member.Id));
+            };
             
+            Discord.GuildMemberAdded += async (sender, args) =>
+            {
+                PublicCmd cmd = new PublicCmd();
+                Console.WriteLine(cmd.initiateUserLevels(args.Guild.Id,args.Member.Id));
+            };
+                
             await Discord.ConnectAsync();
             await Task.Delay(-1);
 

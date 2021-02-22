@@ -281,8 +281,8 @@ namespace JonJDigital_Bot_Proj
 
             if (rdr.Read())
             {
-                var exp = rdr.GetInt64(2).ToString();
-                var level = rdr.GetInt64(3).ToString();
+                var exp = rdr.GetInt64(2);
+                var level = rdr.GetInt64(3);
                 rdr.Close();
                 var reply = new DiscordEmbedBuilder()
                 {
@@ -294,11 +294,18 @@ namespace JonJDigital_Bot_Proj
                 {
                     Url = mentioned.AvatarUrl
                 };
-                reply.AddField("Server: ", guild.Name, false);
-                reply.AddField("Level: ", level, true);
-                reply.AddField("Experience: ", exp, true);
-                reply.AddField("Roles: ", roles, true);
-                reply.WithFooter(mentioned.Username, mentioned.AvatarUrl);
+                if (level == 0)
+                {
+                    reply.Description = "This User has either not spoken, or is a Bot";
+                }
+                else
+                {
+                    reply.AddField("Server: ", guild.Name, false);
+                    reply.AddField("Level: ", level.ToString(), true);
+                    reply.AddField("Experience: ", exp.ToString(), true);
+                    reply.AddField("Roles: ", roles, true);
+                    reply.WithFooter(mentioned.Username, mentioned.AvatarUrl);
+                }
 
                 return reply.Build();
             }
@@ -312,6 +319,10 @@ namespace JonJDigital_Bot_Proj
                     Timestamp = DateTime.UtcNow,
                 };
                 reply.Description = "This User has either not spoken, or is a Bot";
+                reply.Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail()
+                {
+                    Url = mentioned.AvatarUrl
+                };
                 return reply.Build();
             }
         }
@@ -909,6 +920,50 @@ namespace JonJDigital_Bot_Proj
             return embed.Build();
         }
 
+        // auto triggered actions
+
+        public string removeUserLevels(ulong guild_id, ulong user_id)
+        {
+            con.Open();
+            string stm = $"delete from levels where user_id = {user_id} and guild_id = {guild_id}";
+
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                Console.WriteLine($"User {user_id} removed from {guild_id}");
+                return $"User {user_id} removed from {guild_id}";
+            }
+            else
+            {
+                Console.WriteLine("Failed to remove user from levels");
+                return "Failed to remove user from levels";
+            }
+
+        }
+        
+        public string initiateUserLevels(ulong guild_id, ulong user_id)
+        {
+            con.Open();
+            string stm = $"insert into levels(user_id,guild_id,experience,level) values({user_id},{guild_id},0,0)";
+
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                Console.WriteLine($"User {user_id} levels initiated for {guild_id}");
+                return $"User {user_id} levels initiated for {guild_id}";
+            }
+            else
+            {
+                Console.WriteLine("Failed to initiate user levels");
+                return "Failed to initiate user levels";
+            }
+
+        }
+        
     }
     
 }

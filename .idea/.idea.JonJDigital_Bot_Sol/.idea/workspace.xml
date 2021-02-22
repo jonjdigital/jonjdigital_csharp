@@ -5,16 +5,11 @@
     <projectFile>TEST/TEST.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources/7fc162cd-b864-4cd1-8a9f-0bd5de3c8a66.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/.name" beforeDir="false" />
+    <list default="true" id="2120c7c7-4094-432f-9f9d-9c03cd516987" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources/463ce7be-3760-4ff4-a6b3-c66ba071309e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/dataSources/463ce7be-3760-4ff4-a6b3-c66ba071309e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
     </list>
@@ -35,41 +30,22 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/99CFE7E3-241B-42C9-B32C-AAF7FEBC6F8E/1/Google.Apis.YouTube.v3.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/39A/Path.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E8EAE52-18D7-4E99-84E6-DC50718B185D/59/HttpRequestMessage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0FD34F9D-1354-4305-971D-B5674D2A2A66/1F/Directory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E8EAE52-18D7-4E99-84E6-DC50718B185D/C3/HttpRequestHeaders.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2D/Environment.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36EE76F7-388E-433F-A702-CDC1F33D92AD/4/Console.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5BB3EFBF-FD33-41E2-BFF8-0097DD9B84DA/01/73769069/AsyncEvent`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/199/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3460E600-4829-4743-913F-709E8172F4A4/11/WebRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DAD84BF0-52EE-47D0-92FF-B3FF46CC6020/1d/eb5c8608/Env.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA145753-E08F-4034-9E3A-A50D7F7478EE/57/ccf648a7/MySqlCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2EE/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E8EAE52-18D7-4E99-84E6-DC50718B185D/52/HttpClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2B/Environment.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9B85B576-5AD8-4C95-A029-18C4003214A6/4F/DateTimeFormat.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2E/Environment.Variables.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/47D760DB-5DD0-4DB1-B47E-A05D7FCADE38/37/c02fbbca/HttpRequestHeader.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/D2/Span.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA145753-E08F-4034-9E3A-A50D7F7478EE/57/ccf648a7/MySqlCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5BB3EFBF-FD33-41E2-BFF8-0097DD9B84DA/01/73769069/AsyncEvent`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62AFAD06-2BB8-410D-8296-D53B05DB251B/2d/7d3acc70/DiscordGuild.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/TEST/Program.cs" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.gitignore" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/.env" />
-      <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7fc162cd-b864-4cd1-8a9f-0bd5de3c8a66/console.sql" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" />
-      <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" />
+      <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
     </changedPaths>
   </component>
-  <component name="ProjectId" id="1ltr0esPsKBM4M0a1iAPvSoueGR" />
+  <component name="ProjectId" id="1oqZCnR5wlh9dEidb3LgE5BRUEW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -78,28 +54,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.27701777" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.JonJDigital_Bot_Proj">
-    <configuration name="Publish JonJDigital_Bot_Sol to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
-      <riderPublish runtime="win-x86" self_contained="true" target_folder="C:/projects" target_framework="net5.0" uuid_high="-5277727643086074750" uuid_low="-4752785807318172798" />
-      <method v="2" />
-    </configuration>
-    <configuration name="JonJDigital_Bot_Proj" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+  <component name="RunManager">
+    <configuration name="JonJDigital_Bot_Proj" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/JonJDigital_Bot_Proj/bin/Debug/net5.0/JonJDigital_Bot_Proj.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JonJDigital_Bot_Proj/bin/Debug/net5.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -109,57 +75,26 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net5.0" />
       <method v="2">
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="TEST" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/TEST/TEST.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Project.JonJDigital_Bot_Proj" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="368a9c32-1b11-40f6-a2f9-f5466f3a4158" name="Default Changelist" comment="" />
-      <created>1608427008632</created>
+      <changelist id="2120c7c7-4094-432f-9f9d-9c03cd516987" name="Default Changelist" comment="" />
+      <created>1614015961297</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1608427008632</updated>
-      <workItem from="1608427017457" duration="5308000" />
-      <workItem from="1608503348863" duration="19896000" />
-      <workItem from="1609373473334" duration="3139000" />
-      <workItem from="1609778938471" duration="8601000" />
-      <workItem from="1609793865289" duration="10115000" />
-      <workItem from="1610132807156" duration="3531000" />
-      <workItem from="1610142429229" duration="6809000" />
-      <workItem from="1610212926199" duration="24579000" />
-      <workItem from="1610282011376" duration="720000" />
-      <workItem from="1610282754745" duration="2020000" />
-      <workItem from="1610293253273" duration="4740000" />
-      <workItem from="1610748150095" duration="6337000" />
-      <workItem from="1610840409576" duration="8139000" />
-      <workItem from="1611602578782" duration="15079000" />
-      <workItem from="1611688913306" duration="9581000" />
-      <workItem from="1612057244550" duration="3806000" />
-      <workItem from="1612650480609" duration="476000" />
-      <workItem from="1612650978184" duration="10730000" />
-      <workItem from="1612728150808" duration="51000" />
+      <updated>1614015961297</updated>
+      <workItem from="1614015966645" duration="5832000" />
     </task>
     <servers />
   </component>
@@ -167,7 +102,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -180,24 +115,11 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.Net.Http.Headers.HttpContentHeaders" memberName="Allow" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="DotNetProject">
-        <watch expression="((MySql.Data.MySqlClient.MySqlDataReader) MySqlCommand.ExecuteReader()).Statement.ResolvedCommandText" />
-        <watch expression="MySqlCommand.ExecuteReader()" />
-        <watch expression="this.&lt;content&gt;5__4.Headers" language="C#" />
-        <watch expression="this.&lt;publicCmd&gt;5__1.con.driver" />
-        <watch expression="role.Id" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
