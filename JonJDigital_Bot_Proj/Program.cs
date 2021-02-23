@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.Entities;
 using MySql.Data.MySqlClient;
+using Renci.SshNet.Security.Cryptography.Ciphers.Modes;
 
 namespace JonJDigital_Bot_Proj
 {
@@ -64,6 +65,7 @@ namespace JonJDigital_Bot_Proj
             Discord.MessageCreated += async (s, e) =>
             {
                 PublicCmd publicCmd = new PublicCmd();
+                ModLog modLog = new ModLog();
                 GuildLeaderboard leaderboard = new GuildLeaderboard();
 
                 //ignore bots own messages
@@ -315,6 +317,36 @@ namespace JonJDigital_Bot_Proj
                 if (msg.ToLower() == prefix + "leaderboard" || msg.ToLower() == prefix + "top20")
                 {
                     await e.Message.RespondAsync(embed: leaderboard.getLeaderBoard(e.Message.Channel.Guild, Discord));
+                }
+
+                if (msg.ToLower().StartsWith(prefix + "!modlog set"))
+                {
+                    if (e.Message.MentionedChannels.Count != 1)
+                    {
+                        e.Message.RespondAsync("You need to mention one channel");
+                    }
+                    else
+                    {
+                        e.Message.RespondAsync(embed: modLog.addLogChannel(e.Message.MentionedChannels.First(), e.Message,
+                            e.Message.Author));
+                    }
+                }
+                if (msg.ToLower().StartsWith(prefix + "!userlog set"))
+                {
+                    if (e.Message.MentionedChannels.Count != 1)
+                    {
+                        e.Message.RespondAsync("You need to mention one channel");
+                    }
+                    else
+                    {
+                        e.Message.RespondAsync(embed: modLog.addUserLogChannel(e.Message.MentionedChannels.First(), e.Message,
+                            e.Message.Author));
+                    }
+                }
+                if (msg.ToLower() == prefix + "!modlog unset")
+                {
+                    e.Message.RespondAsync(embed: modLog.removeLogChannel(e.Message,
+                            e.Message.Author));
                 }
             };
 

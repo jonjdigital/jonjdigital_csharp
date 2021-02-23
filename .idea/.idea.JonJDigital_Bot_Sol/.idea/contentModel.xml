@@ -10,7 +10,6 @@
         <e p=".gitignore" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="GuildLeaderboard.cs" t="Include" />
-        <e p="Jon.png" t="Include" />
         <e p="JonJDigital_Bot_Proj.csproj" t="IncludeRecursive" />
         <e p="ModLog.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">

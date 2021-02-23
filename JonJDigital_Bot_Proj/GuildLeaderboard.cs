@@ -43,10 +43,10 @@ namespace JonJDigital_Bot_Proj
                 string user = "";
                 user = member.DisplayName + " - (" + member.Username + "#" + member.Discriminator + ")";
                 string response =  user + ", Experience: " + experience + ", Level: " + level;
-                embed.AddField(position + " - "+ response, "\u200b");
+                embed.AddField("\u200b",position + " - "+ response );
 
                 
-                Console.WriteLine(position + ": " + response);
+                // Console.WriteLine(position + ": " + response);
             }
 
             return embed.Build();

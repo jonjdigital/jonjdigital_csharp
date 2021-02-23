@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JonJDigital_Bot_Sol/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Jon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" afterDir="false" />
@@ -38,11 +39,11 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" />
       <option value="$APPLICATION_CONFIG_DIR$/consoles/db/463ce7be-3760-4ff4-a6b3-c66ba071309e/console.sql" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" />
-      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
       <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/PublicCmd.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/Program.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/GuildLeaderboard.cs" />
+      <option value="$PROJECT_DIR$/JonJDigital_Bot_Proj/ModLog.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1oqZCnR5wlh9dEidb3LgE5BRUEW" />
@@ -54,7 +55,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3502052" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -95,6 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614015961297</updated>
       <workItem from="1614015966645" duration="5832000" />
+      <workItem from="1614091563587" duration="7608000" />
     </task>
     <servers />
   </component>
